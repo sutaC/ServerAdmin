@@ -37,6 +37,14 @@ export default function ScriptHandler(props: { script: string; key?: any }) {
             {props.script}
             {isPending && <small>:Pending...</small>}
             {!isPending && <button onClick={runScript}>Run</button>}
+            {!isPending && (
+                <button
+                    disabled={lines.length === 0}
+                    onClick={() => setLines([])}
+                >
+                    Clear
+                </button>
+            )}
 
             <pre>{lines}</pre>
         </div>
