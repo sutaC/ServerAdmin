@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     let active = true;
     try {
         await manageService(service, "status");
-    } catch (err) {
+    } catch {
         active = false;
     }
     return new Response(JSON.stringify(active));
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
             statusText: "Action required",
         });
     if (
-        !SERVICE_ACTIONS.includes(action as any) ||
+        !SERVICE_ACTIONS.includes(action as SERVICE_ACTION) ||
         action === SERVICE_ACTIONS[3] // status
     )
         return new Response(undefined, {

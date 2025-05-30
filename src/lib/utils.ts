@@ -11,8 +11,8 @@ export async function* streamFetch(
         if (done) break;
         try {
             yield decoder.decode(value);
-        } catch (error: any) {
-            console.warn(error.message);
+        } catch (error) {
+            console.warn(error);
         }
     }
 }

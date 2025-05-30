@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                 Connection: "keep-alive",
             },
         });
-    } catch (error) {
+    } catch {
         return new Response(undefined, {
             status: 503,
             statusText: "Script exec error",

@@ -15,17 +15,17 @@ export default function SystemStatistics(props: {
     useEffect(updateUptime, []);
 
     const [memuse, setMemuse] = useState<number>(props.memuse);
-    const updateMemuse = async () => {
-        const res = await fetch("/api/memuse");
-        const value = await res.text();
-        try {
-            setMemuse(Number.parseFloat(value));
-        } catch (error) {
-            console.warn(error);
-        }
-        setTimeout(updateMemuse, 3000);
-    };
     useEffect(() => {
+        const updateMemuse = async () => {
+            const res = await fetch("/api/memuse");
+            const value = await res.text();
+            try {
+                setMemuse(Number.parseFloat(value));
+            } catch (error) {
+                console.warn(error);
+            }
+            setTimeout(updateMemuse, 3000);
+        };
         updateMemuse();
     }, []);
 
