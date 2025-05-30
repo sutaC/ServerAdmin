@@ -34,8 +34,8 @@ export default function SystemStatistics(props: {
             <li>Hostname: {props.hostname}</li>
             <li>
                 Uptime: {Math.floor(uptime / 86400)}d{" "}
-                {Math.floor(uptime / 3600)}h {Math.floor(uptime / 60)}m{" "}
-                {Math.floor(uptime % 60)}s
+                {Math.floor((uptime / 3600) % 24)}h{" "}
+                {Math.floor((uptime / 60) % 60)}m {Math.floor(uptime % 60)}s
             </li>
             <li>Memuse: {memuse}%</li>
         </ul>
