@@ -1,4 +1,4 @@
-import { validateSession } from "@/lib/auth";
+import { verifyPassword } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,8 +8,7 @@ export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
     const isPublicRoute = publicRoutes.includes(path);
     const session = (await cookies()).get("session")?.value ?? "";
-    const isValidSession = validateSession(session);
-    console.log(isPublicRoute, isValidSession);
+    const isValidSession = await verifyPassword(session);
     if (isPublicRoute && isValidSession) {
         return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
     }

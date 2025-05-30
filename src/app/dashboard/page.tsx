@@ -1,8 +1,10 @@
+import { logout } from "@/lib/auth";
+
 export default function Page() {
     return (
         <>
             <h1>Dashboard</h1>
-            <a href="/login">Logout</a>
+            <button onClick={logout}>Logout</button>
         </>
     );
 }
