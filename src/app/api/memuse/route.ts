@@ -1,4 +1,4 @@
-import { getMemUse } from "@/lib/osdata";
+import { getMemUse } from "@/lib/osmanagment";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {

@@ -16,3 +16,6 @@ export async function* streamFetch(
         }
     }
 }
+
+export const SERVICE_ACTIONS = ["start", "stop", "restart", "status"] as const;
+export type SERVICE_ACTION = (typeof SERVICE_ACTIONS)[number];

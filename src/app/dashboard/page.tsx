@@ -1,13 +1,19 @@
 "use server";
-import ScriptHandler from "@/lib/components/ScriptHandler";
-import { logout } from "@/lib/auth";
-import { getScripts } from "@/lib/scripts";
-import { getHostname, getMemUse, getUptime } from "@/lib/osdata";
-import { get } from "http";
 import SystemStatistics from "@/lib/components/SystemStatistics";
+import ServiceManager from "@/lib/components/ServiceManger";
+import ScriptManager from "@/lib/components/ScriptManager";
+import { logout } from "@/lib/auth";
+import {
+    getScripts,
+    getHostname,
+    getMemUse,
+    getUptime,
+    getAvaliableServices,
+} from "@/lib/osmanagment";
 
 export default async function Page() {
     const scripts = await getScripts();
+    const services = await getAvaliableServices();
 
     return (
         <>
@@ -16,7 +22,6 @@ export default async function Page() {
 
             <section>
                 <h2>System</h2>
-
                 <SystemStatistics
                     hostname={await getHostname()}
                     uptime={await getUptime()}
@@ -25,10 +30,19 @@ export default async function Page() {
             </section>
 
             <section>
+                <h2>Services</h2>
+                <div>
+                    {services.map((service, idx) => (
+                        <ServiceManager service={service} key={idx} />
+                    ))}
+                </div>
+            </section>
+
+            <section>
                 <h2>Scripts</h2>
                 <div>
                     {scripts.map((script, idx) => (
-                        <ScriptHandler script={script} key={idx} />
+                        <ScriptManager script={script} key={idx} />
                     ))}
                 </div>
             </section>

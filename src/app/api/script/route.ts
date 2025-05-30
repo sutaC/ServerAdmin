@@ -1,4 +1,4 @@
-import { executeScript, getScripts } from "@/lib/scripts";
+import { executeScript, getScripts } from "@/lib/osmanagment";
 import { NextRequest, NextResponse } from "next/server";
 
 const runningScripts = new Set();

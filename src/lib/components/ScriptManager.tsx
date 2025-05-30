@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { streamFetch } from "@/lib/utils";
 
-export default function ScriptHandler(props: { script: string; key?: any }) {
+export default function ScriptManager(props: { script: string }) {
     const scriptEndpointURL = `/api/script?name=${encodeURI(props.script)}`;
     const [isPending, setIsPending] = useState<boolean>(false);
     const [lines, setLines] = useState<string[]>([]);
@@ -33,7 +33,7 @@ export default function ScriptHandler(props: { script: string; key?: any }) {
     }, []);
 
     return (
-        <div key={props.key}>
+        <div>
             {props.script}
             {isPending && <small>:Pending...</small>}
             {!isPending && <button onClick={runScript}>Run</button>}

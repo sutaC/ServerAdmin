@@ -4,6 +4,8 @@ ServerAdmin is a simple GUI setup for managing your server.
 
 ## Getting starded
 
+0. Make sure to run this app with **admin privliges**, because that is required to properly handle services!
+
 1. Set your `.env` file in root directory by following template:
 
     ```
@@ -17,6 +19,8 @@ ServerAdmin is a simple GUI setup for managing your server.
     ```
 
 2. Add your personal scripts, to access them in dashboard. Just add them, to `scripts` directory. There is a sample file `Hello_World` waiting for you there.
+
+3. Add your services to `services.json` in JSON array. That will be list of services that you would like to manage from dashboard. In the file you will find example service name.
 
 ## Development
 
