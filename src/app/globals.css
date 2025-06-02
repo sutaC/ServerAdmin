@@ -39,9 +39,10 @@ button {
 }
 
 button:is(:hover, :focus-visible) {
+    --_offset: 2px;
     outline: none;
-    translate: -2px -2px;
-    box-shadow: 2px 2px currentColor;
+    translate: calc(-1 * var(--_offset)) calc(-1 * var(--_offset));
+    box-shadow: var(--_offset) var(--_offset) currentColor;
 }
 
 button:active {

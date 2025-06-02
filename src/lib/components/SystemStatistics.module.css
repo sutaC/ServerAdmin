@@ -1,0 +1,38 @@
+.stats li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 0.25rem;
+    margin-bottom: 0.5em;
+}
+
+.line {
+    --_line-size: 2px;
+    flex-grow: 1;
+    border-bottom: var(--_line-size) dotted var(--clr-base);
+    height: calc(1em - var(--_line-size));
+}
+
+.bar {
+    --_size: 0%; /* To set with js */
+    font-size: 0.85rem;
+    width: 40%;
+    border: 1px solid currentColor;
+    border-top: none;
+    border-bottom: none;
+    background: linear-gradient(
+        to right,
+        var(--clr-base) var(--_size),
+        transparent var(--_size)
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bar > * {
+    mix-blend-mode: difference;
+    font-weight: bold;
+}

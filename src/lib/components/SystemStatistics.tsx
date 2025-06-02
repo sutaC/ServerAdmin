@@ -1,6 +1,6 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import styles from "./SystemStatistics.module.css";
+import { useEffect, useRef, useState } from "react";
 
 export default function SystemStatistics(props: {
     hostname: string;
@@ -14,15 +14,17 @@ export default function SystemStatistics(props: {
     };
     useEffect(updateUptime, []);
 
+    const memuseBarRef = useRef<HTMLElement>(null);
     const [memuse, setMemuse] = useState<number>(props.memuse);
     useEffect(() => {
         const updateMemuse = async () => {
             const res = await fetch("/api/memuse");
-            const value = await res.text();
-            try {
-                setMemuse(Number.parseFloat(value));
-            } catch (error) {
-                console.warn(error);
+            const value = Number.parseFloat(await res.text());
+            if (!Number.isNaN(value)) {
+                setMemuse(value);
+                memuseBarRef.current?.style.setProperty("--_size", `${value}%`);
+            } else {
+                console.warn("Invalid memuse value recieved:", value);
             }
             setTimeout(updateMemuse, 3000);
         };
@@ -30,14 +32,28 @@ export default function SystemStatistics(props: {
     }, []);
 
     return (
-        <ul>
-            <li>Hostname: {props.hostname}</li>
+        <ul className={styles.stats}>
             <li>
-                Uptime: {Math.floor(uptime / 86400)}d{" "}
-                {Math.floor((uptime / 3600) % 24)}h{" "}
-                {Math.floor((uptime / 60) % 60)}m {Math.floor(uptime % 60)}s
+                <span>Hostname:</span>
+                <i className={styles.line} />
+                <span>{props.hostname}</span>
             </li>
-            <li>Memuse: {memuse}%</li>
+            <li>
+                <span>Uptime:</span>
+                <i className={styles.line} />
+                <span>
+                    {Math.floor(uptime / 86400)}d{" "}
+                    {Math.floor((uptime / 3600) % 24)}h{" "}
+                    {Math.floor((uptime / 60) % 60)}m {Math.floor(uptime % 60)}s
+                </span>
+            </li>
+            <li>
+                <span>Memuse:</span>
+                <i className={styles.line} />
+                <span className={styles.bar} ref={memuseBarRef}>
+                    <span>{memuse}%</span>
+                </span>
+            </li>
         </ul>
     );
 }
