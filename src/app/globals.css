@@ -1,3 +1,20 @@
+:root {
+    --clr-background: black;
+    --clr-base: white;
+    --clr-error: red;
+}
+
+html {
+    background-color: var(--clr-background);
+    color: var(--clr-base);
+}
+
+html,
+input,
+button {
+    font-family: "Courier New", Courier, monospace;
+}
+
 body {
     max-width: 100vw;
     overflow-x: hidden;
@@ -8,4 +25,33 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+/* Base styles */
+
+button {
+    background-color: var(--clr-background);
+    color: var(--clr-base);
+    border: 1px solid var(--clr-base);
+    padding: 0.5em 0.75em;
+    cursor: pointer;
+    transition: all 75ms ease-in;
+}
+
+button:is(:hover, :focus-visible) {
+    outline: none;
+    translate: -2px -2px;
+    box-shadow: 2px 2px var(--clr-base);
+}
+
+button:active {
+    translate: 0;
+    box-shadow: none;
+}
+
+input {
+    background-color: var(--clr-background);
+    border: 1px solid var(--clr-base);
+    color: var(--clr-base);
+    padding: 0.25em 0.5em;
 }
