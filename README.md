@@ -31,3 +31,36 @@ npm run dev
 ```
 
 You can acces it at `localhost:3000`.
+
+## Deployment
+
+To deploy app run:
+
+```bash
+npm run build # Builds production version
+npm run start # Runs server
+```
+
+---
+
+You may want to change port on which server is running, to do is change script in `package.json` file:
+
+```json
+"start": "next -p <port> start",
+```
+
+Where `<port>` is your desired port.
+
+---
+
+If you want to configure your domain with this app you will need to add to application settings (file: `next.config.ts`) such option:
+
+```ts
+experimental: {
+    serverActions: {
+        allowedOrigins: ['<domain>'],
+    },
+}
+```
+
+Where `<domain>` is domain you are using.
