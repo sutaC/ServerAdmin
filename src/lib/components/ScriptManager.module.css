@@ -46,3 +46,9 @@
     content: "|";
     color: var(--clr-accent);
 }
+
+@media (width <= 900px) {
+    .output {
+        max-width: unset;
+    }
+}
