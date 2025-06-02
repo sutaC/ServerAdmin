@@ -1,0 +1,48 @@
+.service {
+    padding-bottom: 0.5rem;
+}
+
+.name {
+    border: 1px solid currentColor;
+    border-bottom: none;
+    text-align: center;
+    border-top: none;
+    flex-grow: 1;
+}
+
+.active {
+    color: var(--clr-correct);
+}
+
+.inactive {
+    color: var(--clr-error);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.controls {
+    border: 1px solid currentColor;
+    border-right-color: none;
+    border-left: none;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding-left: 0.5rem;
+}
+
+.controls button {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.controls button:hover {
+    border: 1px solid currentColor;
+}

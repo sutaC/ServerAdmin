@@ -1,4 +1,5 @@
 "use client";
+import styles from "./ServiceManager.module.css";
 import { useEffect, useState } from "react";
 import { SERVICE_ACTION } from "@/lib/utils";
 
@@ -31,34 +32,48 @@ export default function ServiceManager(props: { service: string }) {
     };
 
     return (
-        <div>
-            {props.service} - status: {isActive ? "Active" : "Inactive"} -{" "}
-            <button onClick={updateStatus}>Refresh</button>
-            {isActive && (
-                <button
-                    disabled={actionPending}
-                    onClick={() => performAction("restart")}
-                >
-                    Restart
-                </button>
-            )}
-            {isActive && (
-                <button
-                    disabled={actionPending}
-                    onClick={() => performAction("stop")}
-                >
-                    Stop
-                </button>
-            )}
-            {!isActive && (
-                <button
-                    disabled={actionPending}
-                    onClick={() => performAction("start")}
-                >
-                    Start
-                </button>
-            )}
-            {actionPending && <small>Pending...</small>}
+        <div className={styles.service}>
+            <div className={styles.topbar}>
+                <span className={styles.name}>{props.service}</span>
+                <span>
+                    Status:{" "}
+                    <span
+                        className={isActive ? styles.active : styles.inactive}
+                    >
+                        {isActive ? "Active" : "Inactive"}
+                    </span>
+                </span>
+            </div>
+            <div className={styles.controls}>
+                <div>
+                    <button onClick={updateStatus}>Refresh</button>
+                    {isActive && (
+                        <button
+                            disabled={actionPending}
+                            onClick={() => performAction("restart")}
+                        >
+                            Restart
+                        </button>
+                    )}
+                    {isActive && (
+                        <button
+                            disabled={actionPending}
+                            onClick={() => performAction("stop")}
+                        >
+                            Stop
+                        </button>
+                    )}
+                    {!isActive && (
+                        <button
+                            disabled={actionPending}
+                            onClick={() => performAction("start")}
+                        >
+                            Start
+                        </button>
+                    )}
+                </div>
+                {actionPending && <i className="spinner" />}
+            </div>
         </div>
     );
 }

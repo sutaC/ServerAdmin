@@ -1,6 +1,7 @@
 :root {
     --clr-background: black;
     --clr-base: white;
+    --clr-correct: greenyellow;
     --clr-error: red;
 }
 
@@ -64,4 +65,20 @@ a {
 
 a:is(:hover, :focus-visible) {
     text-shadow: 0 0 2px currentColor;
+}
+
+@keyframes spin {
+    to {
+        rotate: 360deg;
+    }
+}
+
+.spinner {
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid currentColor;
+    border-bottom-color: transparent;
+    border-radius: 100%;
+    animation: spin 1s ease-in-out 0s infinite;
 }
