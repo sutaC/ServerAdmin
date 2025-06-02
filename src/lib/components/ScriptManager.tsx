@@ -1,4 +1,5 @@
 "use client";
+import styles from "./ScriptManager.module.css";
 import { useEffect, useState } from "react";
 import { streamFetch } from "@/lib/utils";
 
@@ -33,20 +34,23 @@ export default function ScriptManager(props: { script: string }) {
     }, []);
 
     return (
-        <div>
-            {props.script}
-            {isPending && <small>:Pending...</small>}
-            {!isPending && <button onClick={runScript}>Run</button>}
-            {!isPending && (
-                <button
-                    disabled={lines.length === 0}
-                    onClick={() => setLines([])}
-                >
-                    Clear
-                </button>
-            )}
-
-            <pre>{lines}</pre>
+        <div className={styles.script}>
+            <div className={styles.topbar}>
+                <span className={styles.name}>{props.script}</span>
+                <div>
+                    {isPending && <i className="spinner" />}
+                    {!isPending && <button onClick={runScript}>Run</button>}
+                    {!isPending && (
+                        <button
+                            disabled={lines.length === 0}
+                            onClick={() => setLines([])}
+                        >
+                            Clear
+                        </button>
+                    )}
+                </div>
+            </div>
+            <pre className={styles.output}>{lines}</pre>
         </div>
     );
 }

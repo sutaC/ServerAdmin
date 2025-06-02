@@ -1,0 +1,37 @@
+.script {
+    overflow-x: hidden;
+}
+
+.topbar {
+    display: flex;
+    height: 2.5rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid currentColor;
+    padding: 0.25rem 0.25rem 0.5rem 0;
+}
+
+.name {
+    border: 1px solid currentColor;
+    border-top: none;
+    border-bottom: none;
+    padding: 0 0.5rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.output {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom: 1px dashed currentColor;
+    padding: 0.25rem;
+    height: 10rem;
+    transition: 100ms ease-in-out;
+}
+
+.output:empty {
+    height: 0;
+    border: none;
+}
