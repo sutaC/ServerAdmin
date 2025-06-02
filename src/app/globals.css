@@ -3,6 +3,7 @@
     --clr-base: white;
     --clr-correct: greenyellow;
     --clr-error: red;
+    --clr-accent: darkslategrey;
 }
 
 html {
@@ -39,7 +40,7 @@ button {
     transition: all 75ms ease-in;
 }
 
-button:is(:hover, :focus-visible) {
+button:is(:hover, :focus-visible):not(:disabled) {
     --_offset: 2px;
     outline: none;
     translate: calc(-1 * var(--_offset)) calc(-1 * var(--_offset));
@@ -49,6 +50,11 @@ button:is(:hover, :focus-visible) {
 button:active {
     translate: 0;
     box-shadow: none;
+}
+
+button:disabled {
+    opacity: 0.75;
+    cursor: auto;
 }
 
 input {

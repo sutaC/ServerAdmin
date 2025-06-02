@@ -22,9 +22,10 @@
 }
 
 .output {
-    max-width: 100%;
+    max-width: 30vw;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow: auto;
+    word-break: break-all;
     border-bottom: 1px dashed currentColor;
     padding: 0.25rem;
     height: 10rem;
@@ -34,4 +35,14 @@
 .output:empty {
     height: 0;
     border: none;
+}
+
+.output span {
+    font-size: 0.85rem;
+    display: block;
+}
+
+.output span::before {
+    content: "|";
+    color: var(--clr-accent);
 }

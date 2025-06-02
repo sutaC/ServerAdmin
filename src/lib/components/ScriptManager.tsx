@@ -1,12 +1,13 @@
 "use client";
 import styles from "./ScriptManager.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { streamFetch } from "@/lib/utils";
 
 export default function ScriptManager(props: { script: string }) {
     const scriptEndpointURL = `/api/script?name=${encodeURI(props.script)}`;
     const [isPending, setIsPending] = useState<boolean>(false);
     const [lines, setLines] = useState<string[]>([]);
+    const outputRef = useRef<HTMLDivElement>(null);
 
     const checkIfIsPending = async () => {
         const res = await fetch(scriptEndpointURL);
@@ -25,6 +26,8 @@ export default function ScriptManager(props: { script: string }) {
         const it = streamFetch(scriptEndpointURL, { method: "POST" });
         for await (const value of it) {
             setLines((prev) => [...prev, value]);
+            if (outputRef.current)
+                outputRef.current.scrollTop = outputRef.current.scrollHeight;
         }
         checkIfIsPending();
     };
@@ -50,7 +53,11 @@ export default function ScriptManager(props: { script: string }) {
                     )}
                 </div>
             </div>
-            <pre className={styles.output}>{lines}</pre>
+            <div className={styles.output} ref={outputRef}>
+                {lines.map((line, idx) => (
+                    <span key={idx}>{line}</span>
+                ))}
+            </div>
         </div>
     );
 }
