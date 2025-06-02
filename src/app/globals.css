@@ -31,8 +31,8 @@ body {
 
 button {
     background-color: var(--clr-background);
-    color: var(--clr-base);
-    border: 1px solid var(--clr-base);
+    color: inherit;
+    border: 1px solid currentColor;
     padding: 0.5em 0.75em;
     cursor: pointer;
     transition: all 75ms ease-in;
@@ -41,7 +41,7 @@ button {
 button:is(:hover, :focus-visible) {
     outline: none;
     translate: -2px -2px;
-    box-shadow: 2px 2px var(--clr-base);
+    box-shadow: 2px 2px currentColor;
 }
 
 button:active {
@@ -51,7 +51,16 @@ button:active {
 
 input {
     background-color: var(--clr-background);
-    border: 1px solid var(--clr-base);
-    color: var(--clr-base);
+    border: 1px solid currentColor;
+    color: inherit;
     padding: 0.25em 0.5em;
+}
+
+a {
+    color: inherit;
+    transition: all 75ms ease-in;
+}
+
+a:is(:hover, :focus-visible) {
+    text-shadow: 0 0 2px currentColor;
 }
